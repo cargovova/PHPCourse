@@ -1,77 +1,165 @@
 <?php
 
-// Впуск
-function induction()
+// Четвертый уровень - моторы.
+function openInductionFlaps($numberEngineTakt)
 {
-    return "Открыть впускные клапана, опустить поршень.";
+    if ($numberEngineTakt === 1) {
+        echo "Такт: $numberEngineTakt Цилиндр 1: Открыть впускные клапана. </br>";
+    } elseif ($numberEngineTakt === 2) {
+        echo "Такт: $numberEngineTakt Цилиндр 3: Открыть впускные клапана. </br>";
+    } elseif ($numberEngineTakt === 3) {
+        echo "Такт: $numberEngineTakt Цилиндр 4: Открыть впускные клапана. </br>";
+    } elseif ($numberEngineTakt === 4) {
+        echo "Такт: $numberEngineTakt Цилиндр 2: Открыть впускные клапана. </br>";
+    }
+}
+
+function movePistonDown($numberEngineTakt, $cylinderTact)
+{
+    if ($numberEngineTakt === 1 && $cylinderTact === 'induction') {
+        echo "Такт: $numberEngineTakt Цилиндр 1: Опустить поршень. </br>";
+    } elseif ($numberEngineTakt === 2 && $cylinderTact === 'induction') {
+        echo "Такт: $numberEngineTakt Цилиндр 3: Опустить поршень. </br>";
+    } elseif ($numberEngineTakt === 3 && $cylinderTact === 'induction') {
+        echo "Такт: $numberEngineTakt Цилиндр 4: Опустить поршень. </br>";
+    } elseif ($numberEngineTakt === 4 && $cylinderTact === 'induction') {
+        echo "Такт: $numberEngineTakt Цилиндр 2: Опустить поршень. </br>";
+    }
+    if ($numberEngineTakt === 1 && $cylinderTact === 'power') {
+        echo "Такт: $numberEngineTakt Цилиндр 4: Опустить поршень. </br>";
+    } elseif ($numberEngineTakt === 2 && $cylinderTact === 'power') {
+        echo "Такт: $numberEngineTakt Цилиндр 2: Опустить поршень. </br>";
+    } elseif ($numberEngineTakt === 3 && $cylinderTact === 'power') {
+        echo "Такт: $numberEngineTakt Цилиндр 1: Опустить поршень. </br>";
+    } elseif ($numberEngineTakt === 4 && $cylinderTact === 'power') {
+        echo "Такт: $numberEngineTakt Цилиндр 3: Опустить поршень. </br>";
+    }
+}
+
+function movePistonUp($numberEngineTakt, $cylinderTact)
+{
+    if ($numberEngineTakt === 1 && $cylinderTact === 'compression') {
+        echo "Такт: $numberEngineTakt Цилиндр 2: Поднять поршень. </br>";
+    } elseif ($numberEngineTakt === 2 && $cylinderTact === 'compression') {
+        echo "Такт: $numberEngineTakt Цилиндр 1: Поднять поршень. </br>";
+    } elseif ($numberEngineTakt === 3 && $cylinderTact === 'compression') {
+        echo "Такт: $numberEngineTakt Цилиндр 3: Поднять поршень. </br>";
+    } elseif ($numberEngineTakt === 4 && $cylinderTact === 'compression') {
+        echo "Такт: $numberEngineTakt Цилиндр 4: Поднять поршень. </br>";
+    }
+    if ($numberEngineTakt === 1 && $cylinderTact === 'exhaust') {
+        echo "Такт: $numberEngineTakt Цилиндр 3: Поднять поршень. </br>";
+    } elseif (numberTakt === 2 && $cylinderTact === 'exhaust') {
+        echo "Такт: $numberEngineTakt Цилиндр 4: Поднять поршень. </br>";
+    } elseif (numberTakt === 3 && $cylinderTact === 'exhaust') {
+        echo "Такт: $numberEngineTakt Цилиндр 2: Поднять поршень. </br>";
+    } elseif (numberTakt === 4 && $cylinderTact === 'exhaust') {
+        echo "Такт: $numberEngineTakt Цилиндр 1: Поднять поршень. </br>";
+    }
+}
+
+function runFlash($numberEngineTakt)
+{
+    if ($numberEngineTakt === 1) {
+        echo "Такт: $numberEngineTakt Цилиндр 4: Искра. </br>";
+    } elseif ($numberEngineTakt === 2) {
+        echo "Такт: $numberEngineTakt Цилиндр 2: Искра. </br>";
+    } elseif ($numberEngineTakt === 3) {
+        echo "Такт: $numberEngineTakt Цилиндр 1: Искра. </br>";
+    } elseif ($numberEngineTakt === 4) {
+        echo "Такт: $numberEngineTakt Цилиндр 3: Искра. </br>";
+    }
+}
+
+function openExhaustFlaps($numberEngineTakt)
+{
+    if ($numberEngineTakt === 1) {
+        echo "Такт: $numberEngineTakt Цилиндр 3: Открыть выпускные клапана. </br>";
+    } elseif ($numberEngineTakt === 2) {
+        echo "Такт: $numberEngineTakt Цилиндр 4: Открыть выпускные клапана. </br>";
+    } elseif ($numberEngineTakt === 3) {
+        echo "Такт: $numberEngineTakt Цилиндр 2: Открыть выпускные клапана. </br>";
+    } elseif ($numberEngineTakt === 4) {
+        echo "Такт: $numberEngineTakt Цилиндр 1: Открыть выпускные клапана. </br>";
+    }
+}
+
+// Третий уровень - запуск моторов в зависимости от такта цилиндра.
+
+// Впуск
+function runInduction($numberEngineTakt)
+{
+    $cylinderTact = 'induction';
+    $induction = openInductionFlaps($numberEngineTakt) . movePistonDown($numberEngineTakt, $cylinderTact);
+    return $induction;
 }
 
 // Сжатие
-function compression()
+function runCompression($numberEngineTakt)
 {
-    return "Поднять поршень.";
+    $cylinderTact = 'compression';
+    $compression = movePistonUp($numberEngineTakt, $cylinderTact);
+    return $compression;
 }
 
 // Рабочий ход
-function power()
+function runPower($numberEngineTakt)
 {
-    return "Искра, взрыв, опустить поршень";
+    $cylinderTact = 'power';
+    $power = runFlash($numberEngineTakt) . movePistonDown($numberEngineTakt, $cylinderTact);
+    return $power;
 }
 
 // Выхлоп
-function exhaust()
+function runExhaust($numberEngineTakt)
 {
-    return "Открыть выпускные клапана, поднять поршень.";
-}
-// Функция для любого такта двигателя
-function engine_tact(
-    $tactFirstCylinder,
-    $tactSecondCylinder,
-    $tactThirdCylinder,
-    $tactFourthCylinder)
-{
-    $cylinders = [
-        "Поршень 1: $tactFirstCylinder",
-        "Поршень 2: $tactSecondCylinder",
-        "Поршень 3: $tactThirdCylinder",
-        "Поршень 4: $tactFourthCylinder"
-    ];
-    return $cylinders;
+    $cylinderTact = 'exhaust';
+    $exhaust = openExhaustFlaps($numberEngineTakt) . movePistonUp($numberEngineTakt, $cylinderTact);
+    return $exhaust;
 }
 
-// Управление цилиндрами
-function management_tacts()
+// Второй уровень - запуск функций в зависимости от номера такта.
+function runEngineTakt($numberEngineTakt)
 {
-    $induction = induction();
-    $compression = compression();
-    $power = power();
-    $exhaust = exhaust();
-
-    $managementTacts = [
-        engine_tact($induction, $compression, $exhaust, $power),
-        engine_tact($compression, $power, $induction, $exhaust),
-        engine_tact($power, $exhaust, $compression, $induction),
-        engine_tact($exhaust, $induction, $power, $compression)
-    ];
-    return $managementTacts;
+    if ($numberEngineTakt === 1) {
+        $oneTact = [
+            runInduction($numberEngineTakt),
+            runCompression($numberEngineTakt),
+            runExhaust($numberEngineTakt),
+            runPower($numberEngineTakt)
+        ];
+    } elseif ($numberEngineTakt === 2) {
+        $oneTact = [
+            runCompression($numberEngineTakt),
+            runPower($numberEngineTakt),
+            runInduction($numberEngineTakt),
+            runExhaust($numberEngineTakt)
+        ];
+    } elseif ($numberEngineTakt === 3) {
+        $oneTact = [
+            runPower($numberEngineTakt),
+            runExhaust($numberEngineTakt),
+            runCompression($numberEngineTakt),
+            runInduction($numberEngineTakt)
+        ];
+    } elseif ($numberEngineTakt === 4) {
+        $oneTact = [
+            runExhaust($numberEngineTakt),
+            runInduction($numberEngineTakt),
+            runPower($numberEngineTakt),
+            runCompression($numberEngineTakt)
+        ];
+    }
+    return $oneTact;
 }
 
-// Управление двигателем
-function management_engine()
+// Первый уровень - запук двигателя - запуск тактов по очереди.
+function runEngine()
 {
-    $managementTacts = management_tacts();
-    return $managementTacts;
-}
-
-// Вывод (При запуске в консоли будет отображаться работа двигателя, IDE падает).
-$i = 1;
-while ($i == 1) {
-    foreach (management_engine() as $value) {
-        foreach ($value as $index){
-            echo $index;
-            echo "\n";
-        }
-        echo "\n";
+    $engineWork = [];
+    for ($i = 1; $i <= 4; $i ++) {
+        array_push($engineWork, runEngineTakt($i));
     }
 }
+runEngine();
 ?>
