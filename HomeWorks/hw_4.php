@@ -3,24 +3,24 @@ $numberDecimal = 6;
 $binaryBasis = 2;
 $decimalBasis = 10;
 
-function divide_number($numberDecimal, $binaryBasis)
+function divideNumbers($numberDecimal, $binaryBasis)
 {
     $devideNumber = $numberDecimal / $binaryBasis;
     return $devideNumber;
 }
 
 // Переводим в двоичную
-function translate_to_binary($numberDecimal, $binaryBasis)
+function translateToBinary($numberDecimal, $binaryBasis)
 {
     $binaryArray = [];
     do {
-        if (gettype(divide_number($numberDecimal, $binaryBasis)) == "integer") {
+        if (gettype(divideNumbers($numberDecimal, $binaryBasis)) == "integer") {
             array_push($binaryArray, 0);
         } else {
             array_push($binaryArray, 1);
         }
-        $numberDecimal = intval(divide_number($numberDecimal, $binaryBasis));
-    } while (divide_number($numberDecimal, $binaryBasis) >= 1);
+        $numberDecimal = intval(divideNumbers($numberDecimal, $binaryBasis));
+    } while (divideNumbers($numberDecimal, $binaryBasis) >= 1);
     // Добавить последнюю цифру в зависимости от четности.
     if ($numberDecimal == 1) {
         array_push($binaryArray, 1);
@@ -34,21 +34,22 @@ function translate_to_binary($numberDecimal, $binaryBasis)
 }
 
 // Переводим в десятичную
-function translate_to_decimal($numberDecimal, $binaryBasis, $decimalBasis)
+function translateToDecimal($numberDecimal, $binaryBasis, $decimalBasis)
 {
     // Функция в аргументе функции - запрещено в PHP. Переопределил.
-    $binaryNumber = translate_to_binary($numberDecimal, $binaryBasis);
+    $binaryNumber = translateToBinary($numberDecimal, $binaryBasis);
     // Строка в массив
     $decimalArray = str_split($binaryNumber);
     // Количество элементов в массиве
     $countNumber = count($decimalArray);
     foreach ($decimalArray as &$numberOfDecimalArray) {
-        $numberOfDecimalArray = $numberOfDecimalArray * (2 ** ($countNumber - 1));
+        // -1, потому что отсчёт от нуля.
+        $numberOfDecimalArray = $numberOfDecimalArray * ($binaryBasis ** ($countNumber - 1));
         -- $countNumber;
     }
     unset($numberOfDecimalArray);
     return array_sum($decimalArray);
 }
-echo translate_to_binary($numberDecimal, $binaryBasis), PHP_EOL;
-echo translate_to_decimal($numberDecimal, $binaryBasis, $decimalBasis);
+echo translateToBinary($numberDecimal, $binaryBasis), PHP_EOL;
+echo translateToDecimal($numberDecimal, $binaryBasis, $decimalBasis);
 ?>
