@@ -1,0 +1,8 @@
+{
+	"name" : "phpcourse/phpcourse",
+	"autoload" : {
+		"psr-4" : {
+			"app\\" : "src"
+		}
+	}
+}

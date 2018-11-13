@@ -1,5 +1,4 @@
 <?php
-
 // Впуск
 function runInduction($cylinderNumber)
 {
